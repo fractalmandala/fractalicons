@@ -1,0 +1,93 @@
+{
+	"name": "fractalicons",
+	"version": "0.0.1",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite dev",
+		"clean": "node -e 'fs.rmSync(\".svelte-kit/__package__\", { recursive: true, force: true, maxRetries: 10, retryDelay: 50 }); fs.rmSync(\"dist\", { recursive: true, force: true, maxRetries: 10, retryDelay: 50 })'",
+		"generate": "node scripts/generate-icons.js",
+		"build": "npm run generate && vite build && npm run prepack",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"prepack": "npm run clean && npm run generate && svelte-kit sync && svelte-package && publint",
+		"check": "npm run generate && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"files": [
+		"dist",
+		"!dist/icons",
+		"!dist/icons/**",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./Icon.svelte": {
+			"types": "./dist/Icon.svelte.d.ts",
+			"svelte": "./dist/Icon.svelte"
+		},
+		"./*": {
+			"types": "./dist/*.d.ts",
+			"default": "./dist/*.js"
+		}
+	},
+	"typesVersions": {
+		">4.0": {
+			"index.d.ts": [
+				"./dist/index.d.ts"
+			],
+			"Icon.svelte": [
+				"./dist/Icon.svelte.d.ts"
+			],
+			"*": [
+				"./dist/*.d.ts"
+			]
+		}
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@sveltejs/adapter-vercel": "^6.3.3",
+		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^22",
+		"eslint": "^10.4.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"publint": "^0.3.21",
+		"sv-agentation": "^0.4.0",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.0.16"
+	},
+	"keywords": [
+		"svelte",
+		"icons",
+		"lucide",
+		"phosphor",
+		"fontawesome",
+		"remix",
+		"iconoir",
+		"boxicons",
+		"anticons"
+	]
+}
