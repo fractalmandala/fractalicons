@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
-		"clean": "node -e 'fs.rmSync(\".svelte-kit/__package__\", { recursive: true, force: true, maxRetries: 10, retryDelay: 50 }); fs.rmSync(\"dist\", { recursive: true, force: true, maxRetries: 10, retryDelay: 50 })'",
+		"clean": "node scripts/clean.js",
 		"generate": "node scripts/generate-icons.js",
 		"build": "npm run generate && vite build && npm run prepack",
 		"preview": "vite preview",
