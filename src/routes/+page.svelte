@@ -2,9 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import { luActivity, luSparkles, luFlame } from '$lib/lucide.js';
 	import { phAcorn, phHeart, phLightning } from '$lib/phosphor.js';
-	import { fa0, faBolt } from '$lib/fontawesome.js';
 	import { re24HoursLine, reFireLine } from '$lib/remix.js';
-	import { boBx8Ball, boBxAlarm } from '$lib/boxicons.js';
 	import { maaLoadingLoop, maaAccountAlertLoop } from '$lib/materialanim.js';
 	import { icAccessibilitySign, icActivity } from '$lib/iconoir.js';
 	import { anAccountBook, anAlert } from '$lib/anticons.js';
@@ -16,12 +14,8 @@
 		{ set: 'Phosphor (ph)', name: 'phAcorn', icon: phAcorn },
 		{ set: 'Phosphor (ph)', name: 'phHeart', icon: phHeart },
 		{ set: 'Phosphor (ph)', name: 'phLightning', icon: phLightning },
-		{ set: 'FontAwesome (fa)', name: 'faBolt', icon: faBolt },
-		{ set: 'FontAwesome (fa)', name: 'fa0', icon: fa0 },
 		{ set: 'Remix (re)', name: 're24HoursLine', icon: re24HoursLine },
 		{ set: 'Remix (re)', name: 'reFireLine', icon: reFireLine },
-		{ set: 'Boxicons (bo)', name: 'boBx8Ball', icon: boBx8Ball },
-		{ set: 'Boxicons (bo)', name: 'boBxAlarm', icon: boBxAlarm },
 		{ set: 'Material Animated (maa)', name: 'maaLoadingLoop', icon: maaLoadingLoop },
 		{ set: 'Material Animated (maa)', name: 'maaAccountAlertLoop', icon: maaAccountAlertLoop },
 		{ set: 'Iconoir (ic)', name: 'icAccessibilitySign', icon: icAccessibilitySign },

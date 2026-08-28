@@ -44,13 +44,9 @@ const presentationAttrNames = [
 
 export const familyPrefixMap = {
 	anticons: 'an',
-	boxicons: 'bo',
-	fontawesome: 'fa',
 	iconoir: 'ic',
 	iconoirfill: 'icf',
 	lucide: 'lu',
-	lucidenim: 'lua',
-	lucideanim: 'lua',
 	materialanim: 'maa',
 	phosphor: 'ph',
 	phosphorfill: 'phf',
