@@ -44,16 +44,30 @@ const presentationAttrNames = [
 
 export const familyPrefixMap = {
 	anticons: 'an',
+	boxregular: 'bx',
+	boxsolid: 'bxs',
+	circum: 'ci',
 	coreui: 'cu',
+	cssgg: 'gg',
 	famicons: 'fa',
+	feathericons: 'fe',
+	fontawesome: 'far',
+	fontawesomesolid: 'fas',
+	heroicons: 'he',
+	heroiconsfill: 'hef',
 	iconoir: 'ic',
 	iconoirfill: 'icf',
 	lucide: 'lu',
 	materialanim: 'maa',
+	octicons: 'oc',
 	phosphor: 'ph',
 	phosphorfill: 'phf',
 	remix: 're',
-	remixfill: 'ref'
+	remixfill: 'ref',
+	simple: 'si',
+	simpleline: 'sl',
+	tabler: 'tb',
+	tablerfill: 'tbf'
 };
 
 function safeRemove(targetPath) {
@@ -106,15 +120,24 @@ function extractViewBox(svg) {
 	return '0 0 24 24';
 }
 
+function escapeRegExp(value) {
+	return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function normalizeColor(svg) {
 	let result = svg;
 
+	// Case-insensitive: upstream sets mix `#0F172A` and `#0f172a` for the same black.
+	// Whitespace after the CSS colon is deliberately NOT tolerated: `fill: #000` inside a
+	// <mask> (materialanim) is mask geometry, not a color, and must stay black.
 	for (const color of hardcodedCurrentColorCandidates) {
+		const pattern = escapeRegExp(color);
+
 		result = result
-			.replaceAll(`fill="${color}"`, 'fill="currentColor"')
-			.replaceAll(`stroke="${color}"`, 'stroke="currentColor"')
-			.replaceAll(`fill:${color}`, 'fill:currentColor')
-			.replaceAll(`stroke:${color}`, 'stroke:currentColor');
+			.replace(new RegExp(`fill="${pattern}"`, 'gi'), 'fill="currentColor"')
+			.replace(new RegExp(`stroke="${pattern}"`, 'gi'), 'stroke="currentColor"')
+			.replace(new RegExp(`fill:${pattern}`, 'gi'), 'fill:currentColor')
+			.replace(new RegExp(`stroke:${pattern}`, 'gi'), 'stroke:currentColor');
 	}
 
 	return result;
@@ -137,6 +160,12 @@ function stripSvg(svg) {
 		.replace(/<\?xml[^>]*\?>/gi, '')
 		.replace(/<!DOCTYPE[^>]*>/gi, '')
 		.replace(/<!--[\s\S]*?-->/g, '');
+
+	// Drop upstream metadata elements (Simple Icons ships a <title> in every file);
+	// Icon.svelte owns the accessible name via its own `title` prop.
+	cleaned = cleaned
+		.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi, '')
+		.replace(/<desc\b[^>]*>[\s\S]*?<\/desc>/gi, '');
 
 	// Strip outer <svg ...> and </svg>
 	cleaned = cleaned.replace(/^[\s\S]*?<svg[^>]*>/i, '').replace(/<\/svg>[\s\S]*$/i, '');

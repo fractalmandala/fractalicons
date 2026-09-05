@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/fractalicons.svg)](https://www.npmjs.com/package/fractalicons)
 [![license](https://img.shields.io/npm/l/fractalicons.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **11,400+ icons across 11 popular open-source icon families** with short, ergonomic import prefixes.
+A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **27,000+ icons across 25 popular open-source icon families** with short, ergonomic import prefixes.
 
 I built this to be able to sample and use multiple icon families through a single workflow and pipeline. Built with love on SvelteKit.
 
@@ -68,6 +68,10 @@ Import the `Icon` component once, then import individual icons from any family's
 	import { anAccountBook } from 'fractalicons/anticons';
 	import { cuSpeedometer } from 'fractalicons/coreui';
 	import { faFlameOutline } from 'fractalicons/famicons';
+	import { ciCoffeeCup } from 'fractalicons/circum';
+	import { tbArrowMerge } from 'fractalicons/tabler';
+	import { heAcademicCap } from 'fractalicons/heroicons';
+	import { feActivity } from 'fractalicons/feathericons';
 	import { maaLoadingLoop } from 'fractalicons/materialanim';
 </script>
 
@@ -92,21 +96,35 @@ Import the `Icon` component once, then import individual icons from any family's
 
 ## Supported Families & Prefix Reference
 
-| Family                | Prefix | Icons | Import Path                 | Primary Export Example                  | Alias Example                  |
-| :-------------------- | :----- | :---- | :-------------------------- | :-------------------------------------- | :----------------------------- |
-| **Lucide**            | `lu`   | 1,743 | `fractalicons/lucide`       | `luActivity`, `luSparkles`              | `lucideActivity`               |
-| **Phosphor**          | `ph`   | 1,512 | `fractalicons/phosphor`     | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
-| **Phosphor Fill**     | `phf`  | 1,512 | `fractalicons/phosphorfill` | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
-| **Remix Icon**        | `re`   | 1,444 | `fractalicons/remix`        | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
-| **Remix Icon Fill**   | `ref`  | 1,292 | `fractalicons/remixfill`    | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
-| **Iconoir**           | `ic`   | 1,383 | `fractalicons/iconoir`      | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
-| **Iconoir Fill**      | `icf`  | 288   | `fractalicons/iconoirfill`  | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
-| **Material Animated** | `maa`  | 545   | `fractalicons/materialanim` | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
-| **Ant Design Icons**  | `an`   | 150   | `fractalicons/anticons`     | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
-| **CoreUI Icons**      | `cu`   | 562   | `fractalicons/coreui`       | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
-| **Famicons**          | `fa`   | 1,000 | `fractalicons/famicons`     | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
+| Family                 | Prefix | Icons | Import Path                     | Primary Export Example                  | Alias Example                  |
+| :--------------------- | :----- | :---- | :------------------------------ | :-------------------------------------- | :----------------------------- |
+| **Lucide**             | `lu`   | 1,743 | `fractalicons/lucide`           | `luActivity`, `luSparkles`              | `lucideActivity`               |
+| **Phosphor**           | `ph`   | 1,512 | `fractalicons/phosphor`         | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
+| **Phosphor Fill**      | `phf`  | 1,512 | `fractalicons/phosphorfill`     | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
+| **Remix Icon**         | `re`   | 1,444 | `fractalicons/remix`            | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
+| **Remix Icon Fill**    | `ref`  | 1,292 | `fractalicons/remixfill`        | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
+| **Iconoir**            | `ic`   | 1,383 | `fractalicons/iconoir`          | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
+| **Iconoir Fill**       | `icf`  | 288   | `fractalicons/iconoirfill`      | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
+| **Material Animated**  | `maa`  | 545   | `fractalicons/materialanim`     | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
+| **Ant Design Icons**   | `an`   | 150   | `fractalicons/anticons`         | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
+| **CoreUI Icons**       | `cu`   | 562   | `fractalicons/coreui`           | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
+| **Famicons**           | `fa`   | 1,342 | `fractalicons/famicons`         | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
+| **Circum Icons**       | `ci`   | 288   | `fractalicons/circum`           | `ciCoffeeCup`, `ciSearch`               | `circumCoffeeCup`              |
+| **Boxicons Regular**   | `bx`   | 814   | `fractalicons/boxregular`       | `bxAbacus`, `bxAccessibility`           | `boxregularAbacus`             |
+| **Boxicons Solid**     | `bxs`  | 665   | `fractalicons/boxsolid`         | `bxsAdjust`, `bxsAddToQueue`            | `boxsolidAdjust`               |
+| **css.gg**             | `gg`   | 704   | `fractalicons/cssgg`            | `ggAbstract`, `ggAddR`                  | `cssggAbstract`                |
+| **Feather**            | `fe`   | 287   | `fractalicons/feathericons`     | `feActivity`, `feAlertCircle`           | `feathericonsActivity`         |
+| **Font Awesome**       | `far`  | 273   | `fractalicons/fontawesome`      | `farAddressBook`, `farAlarmClock`       | `fontawesomeAddressBook`       |
+| **Font Awesome Solid** | `fas`  | 2,001 | `fractalicons/fontawesomesolid` | `fasHeart`, `fasUser`                   | `fontawesomesolidHeart`        |
+| **Heroicons**          | `he`   | 296   | `fractalicons/heroicons`        | `heAcademicCap`, `heBeaker`             | `heroiconsAcademicCap`         |
+| **Heroicons Solid**    | `hef`  | 296   | `fractalicons/heroiconsfill`    | `hefAcademicCap`, `hefBeaker`           | `heroiconsfillAcademicCap`     |
+| **Octicons**           | `oc`   | 604   | `fractalicons/octicons`         | `ocAlert16`, `ocRepo24`                 | `octiconsAlert16`              |
+| **Simple Icons**       | `si`   | 3,095 | `fractalicons/simple`           | `siGithub`, `siFigma`                   | `simpleGithub`                 |
+| **Simple Line Icons**  | `sl`   | 189   | `fractalicons/simpleline`       | `slActionRedo`, `slAnchor`              | `simplelineActionRedo`         |
+| **Tabler**             | `tb`   | 5,130 | `fractalicons/tabler`           | `tbBell`, `tbBrandGithub`               | `tablerBell`                   |
+| **Tabler Filled**      | `tbf`  | 1,054 | `fractalicons/tablerfill`       | `tbfAccessible`, `tbfAdCircle`          | `tablerfillAccessible`         |
 
-**Total: 11,431 icons across 11 families.**
+**Total: 27,469 icons across 25 families.**
 
 ---
 
@@ -324,18 +342,31 @@ To add or update a family, drop its `.svg` files into `src/lib/icons/<family>/`,
 
 All icons included in this library belong to their respective creators and open-source projects. We are immensely grateful to the open-source icon design community:
 
-| Icon Family               | Author / Organization                      | License                       | Repository & License File                                                                                   |
-| :------------------------ | :----------------------------------------- | :---------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| **Lucide**                | Lucide Contributors / Cole Bemis           | **ISC License**               | [lucide-icons/lucide LICENSE](https://github.com/lucide-icons/lucide/blob/main/LICENSE)                     |
-| **Phosphor Icons**        | Tobias Fried & Helena Zhang                | **MIT License**               | [phosphor-icons/core LICENSE](https://github.com/phosphor-icons/core/blob/main/LICENSE)                     |
-| **Remix Icon**            | Remix Design                               | **Apache License 2.0**        | [Remix-Design/RemixIcon License](https://github.com/Remix-Design/RemixIcon/blob/master/License)             |
-| **Iconoir**               | Luca Burgio & Iconoir Team                 | **MIT License**               | [iconoir-icons/iconoir LICENSE](https://github.com/iconoir-icons/iconoir/blob/main/LICENSE)                 |
-| **Ant Design Icons**      | Ant Financial / Ant Design Team            | **MIT License**               | [ant-design/ant-design-icons LICENSE](https://github.com/ant-design/ant-design-icons/blob/master/LICENSE)   |
-| **CoreUI Icons**          | CoreUI (Łukasz Holeczek)                   | **CC BY 4.0** (free icon set) | [coreui/coreui-icons LICENSE](https://github.com/coreui/coreui-icons/blob/main/LICENSE)                     |
-| **Famicons**              | Family.js Team (fork of Ionicons by Ionic) | **MIT License**               | [familyjs/famicons LICENSE](https://github.com/familyjs/famicons/blob/main/LICENSE)                         |
-| **Material Design Icons** | Google LLC                                 | **Apache License 2.0**        | [google/material-design-icons LICENSE](https://github.com/google/material-design-icons/blob/master/LICENSE) |
+| Icon Family               | Author / Organization                      | License                                            | Repository & License File                                                                                    |
+| :------------------------ | :----------------------------------------- | :------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| **Lucide**                | Lucide Contributors / Cole Bemis           | **ISC License**                                    | [lucide-icons/lucide LICENSE](https://github.com/lucide-icons/lucide/blob/main/LICENSE)                      |
+| **Phosphor Icons**        | Tobias Fried & Helena Zhang                | **MIT License**                                    | [phosphor-icons/core LICENSE](https://github.com/phosphor-icons/core/blob/main/LICENSE)                      |
+| **Remix Icon**            | Remix Design                               | **Apache License 2.0**                             | [Remix-Design/RemixIcon License](https://github.com/Remix-Design/RemixIcon/blob/master/License)              |
+| **Iconoir**               | Luca Burgio & Iconoir Team                 | **MIT License**                                    | [iconoir-icons/iconoir LICENSE](https://github.com/iconoir-icons/iconoir/blob/main/LICENSE)                  |
+| **Ant Design Icons**      | Ant Financial / Ant Design Team            | **MIT License**                                    | [ant-design/ant-design-icons LICENSE](https://github.com/ant-design/ant-design-icons/blob/master/LICENSE)    |
+| **CoreUI Icons**          | CoreUI (Łukasz Holeczek)                   | **CC BY 4.0** (free icon set)                      | [coreui/coreui-icons LICENSE](https://github.com/coreui/coreui-icons/blob/main/LICENSE)                      |
+| **Famicons**              | Family.js Team (fork of Ionicons by Ionic) | **MIT License**                                    | [familyjs/famicons LICENSE](https://github.com/familyjs/famicons/blob/main/LICENSE)                          |
+| **Circum Icons**          | Klarr Agency / Klaus Nygård                | **MPL 2.0**                                        | [Klarr-Agency/Circum-Icons LICENSE](https://github.com/Klarr-Agency/Circum-Icons/blob/main/LICENSE)          |
+| **Boxicons**              | Atisa (atisawd)                            | **MIT License**                                    | [atisawd/boxicons LICENSE](https://github.com/atisawd/boxicons/blob/master/LICENSE)                          |
+| **css.gg**                | Astrit Malsija                             | **MIT License**                                    | [astrit/css.gg LICENSE](https://github.com/astrit/css.gg/blob/master/LICENSE)                                |
+| **Feather**               | Cole Bemis & Feather Contributors          | **MIT License**                                    | [feathericons/feather LICENSE](https://github.com/feathericons/feather/blob/main/LICENSE)                    |
+| **Font Awesome Free**     | Fonticons, Inc.                            | **CC BY 4.0** (icons), OFL 1.1 (fonts), MIT (code) | [FortAwesome/Font-Awesome LICENSE](https://github.com/FortAwesome/Font-Awesome/blob/6.x/LICENSE.txt)         |
+| **Heroicons**             | Tailwind Labs                              | **MIT License**                                    | [tailwindlabs/heroicons LICENSE](https://github.com/tailwindlabs/heroicons/blob/master/LICENSE)              |
+| **Octicons**              | GitHub, Inc.                               | **MIT License**                                    | [primer/octicons LICENSE](https://github.com/primer/octicons/blob/main/LICENSE)                              |
+| **Simple Icons**          | Simple Icons Contributors                  | **CC0 1.0**                                        | [simple-icons/simple-icons LICENSE](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md)    |
+| **Simple Line Icons**     | Sabbir Ahmed                               | **MIT License**                                    | [thesabbir/simple-line-icons LICENSE](https://github.com/thesabbir/simple-line-icons/blob/master/LICENSE.md) |
+| **Tabler Icons**          | Paweł Kuna                                 | **MIT License**                                    | [tabler/tabler-icons LICENSE](https://github.com/tabler/tabler-icons/blob/master/LICENSE)                    |
+| **Material Design Icons** | Google LLC                                 | **Apache License 2.0**                             | [google/material-design-icons LICENSE](https://github.com/google/material-design-icons/blob/master/LICENSE)  |
 
 Each family remains under its original license; retain the relevant attribution when redistributing.
+
+> **Simple Icons note:** the icon files are CC0, but the brands they depict are trademarks of their
+> respective owners. Use them to refer to the brand, not to imply endorsement.
 
 ---
 

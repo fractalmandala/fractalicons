@@ -31,6 +31,10 @@ Import the `Icon` component once, then import individual icons from any family's
 	import { anAccountBook } from 'fractalicons/anticons';
 	import { cuSpeedometer } from 'fractalicons/coreui';
 	import { faFlameOutline } from 'fractalicons/famicons';
+	import { ciCoffeeCup } from 'fractalicons/circum';
+	import { tbArrowMerge } from 'fractalicons/tabler';
+	import { heAcademicCap } from 'fractalicons/heroicons';
+	import { feActivity } from 'fractalicons/feathericons';
 	import { maaLoadingLoop } from 'fractalicons/materialanim';
 </script>
 

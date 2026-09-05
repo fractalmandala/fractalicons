@@ -6,19 +6,33 @@ type: fractalicons
 
 Available families and their prefixes:
 
-| Family                | Prefix | Icons | Import Path                 | Primary Export Example                  | Alias Example                  |
-| :-------------------- | :----- | :---- | :-------------------------- | :-------------------------------------- | :----------------------------- |
-| **Lucide**            | `lu`   | 1,743 | `fractalicons/lucide`       | `luActivity`, `luSparkles`              | `lucideActivity`               |
-| **Phosphor**          | `ph`   | 1,512 | `fractalicons/phosphor`     | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
-| **Phosphor Fill**     | `phf`  | 1,512 | `fractalicons/phosphorfill` | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
-| **Remix Icon**        | `re`   | 1,444 | `fractalicons/remix`        | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
-| **Remix Icon Fill**   | `ref`  | 1,292 | `fractalicons/remixfill`    | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
-| **Iconoir**           | `ic`   | 1,383 | `fractalicons/iconoir`      | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
-| **Iconoir Fill**      | `icf`  | 288   | `fractalicons/iconoirfill`  | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
-| **Material Animated** | `maa`  | 545   | `fractalicons/materialanim` | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
-| **Ant Design Icons**  | `an`   | 150   | `fractalicons/anticons`     | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
-| **CoreUI Icons**      | `cu`   | 562   | `fractalicons/coreui`       | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
-| **Famicons**          | `fa`   | 1,000 | `fractalicons/famicons`     | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
+| Family                 | Prefix | Icons | Import Path                     | Primary Export Example                  | Alias Example                  |
+| :--------------------- | :----- | :---- | :------------------------------ | :-------------------------------------- | :----------------------------- |
+| **Lucide**             | `lu`   | 1,743 | `fractalicons/lucide`           | `luActivity`, `luSparkles`              | `lucideActivity`               |
+| **Phosphor**           | `ph`   | 1,512 | `fractalicons/phosphor`         | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
+| **Phosphor Fill**      | `phf`  | 1,512 | `fractalicons/phosphorfill`     | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
+| **Remix Icon**         | `re`   | 1,444 | `fractalicons/remix`            | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
+| **Remix Icon Fill**    | `ref`  | 1,292 | `fractalicons/remixfill`        | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
+| **Iconoir**            | `ic`   | 1,383 | `fractalicons/iconoir`          | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
+| **Iconoir Fill**       | `icf`  | 288   | `fractalicons/iconoirfill`      | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
+| **Material Animated**  | `maa`  | 545   | `fractalicons/materialanim`     | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
+| **Ant Design Icons**   | `an`   | 150   | `fractalicons/anticons`         | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
+| **CoreUI Icons**       | `cu`   | 562   | `fractalicons/coreui`           | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
+| **Famicons**           | `fa`   | 1,342 | `fractalicons/famicons`         | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
+| **Circum Icons**       | `ci`   | 288   | `fractalicons/circum`           | `ciCoffeeCup`, `ciSearch`               | `circumCoffeeCup`              |
+| **Boxicons Regular**   | `bx`   | 814   | `fractalicons/boxregular`       | `bxAbacus`, `bxAccessibility`           | `boxregularAbacus`             |
+| **Boxicons Solid**     | `bxs`  | 665   | `fractalicons/boxsolid`         | `bxsAdjust`, `bxsAddToQueue`            | `boxsolidAdjust`               |
+| **css.gg**             | `gg`   | 704   | `fractalicons/cssgg`            | `ggAbstract`, `ggAddR`                  | `cssggAbstract`                |
+| **Feather**            | `fe`   | 287   | `fractalicons/feathericons`     | `feActivity`, `feAlertCircle`           | `feathericonsActivity`         |
+| **Font Awesome**       | `far`  | 273   | `fractalicons/fontawesome`      | `farAddressBook`, `farAlarmClock`       | `fontawesomeAddressBook`       |
+| **Font Awesome Solid** | `fas`  | 2,001 | `fractalicons/fontawesomesolid` | `fasHeart`, `fasUser`                   | `fontawesomesolidHeart`        |
+| **Heroicons**          | `he`   | 296   | `fractalicons/heroicons`        | `heAcademicCap`, `heBeaker`             | `heroiconsAcademicCap`         |
+| **Heroicons Solid**    | `hef`  | 296   | `fractalicons/heroiconsfill`    | `hefAcademicCap`, `hefBeaker`           | `heroiconsfillAcademicCap`     |
+| **Octicons**           | `oc`   | 604   | `fractalicons/octicons`         | `ocAlert16`, `ocRepo24`                 | `octiconsAlert16`              |
+| **Simple Icons**       | `si`   | 3,095 | `fractalicons/simple`           | `siGithub`, `siFigma`                   | `simpleGithub`                 |
+| **Simple Line Icons**  | `sl`   | 189   | `fractalicons/simpleline`       | `slActionRedo`, `slAnchor`              | `simplelineActionRedo`         |
+| **Tabler**             | `tb`   | 5,130 | `fractalicons/tabler`           | `tbBell`, `tbBrandGithub`               | `tablerBell`                   |
+| **Tabler Filled**      | `tbf`  | 1,054 | `fractalicons/tablerfill`       | `tbfAccessible`, `tbfAdCircle`          | `tablerfillAccessible`         |
 
 Every icon is exported under **two names**, both pointing at the same `IconData` object:
 
