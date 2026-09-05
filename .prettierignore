@@ -7,3 +7,22 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Generated icon modules — written by scripts/generate-icons.js, never hand-edited.
+# The glob covers every per-family module dir (and the src/lib/icons SVG sources);
+# the barrels have to be listed, so add a line when you add a family to familyPrefixMap.
+/src/lib/*/
+/src/lib/anticons.ts
+/src/lib/coreui.ts
+/src/lib/famicons.ts
+/src/lib/iconoir.ts
+/src/lib/iconoirfill.ts
+/src/lib/lucide.ts
+/src/lib/materialanim.ts
+/src/lib/phosphor.ts
+/src/lib/phosphorfill.ts
+/src/lib/remix.ts
+/src/lib/remixfill.ts
+
+# Local editor/agent state
+/.claude/settings.local.json

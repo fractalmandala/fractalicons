@@ -104,6 +104,9 @@
 	{#if title && !decorative}
 		<title id={labelledBy}>{title}</title>
 	{/if}
+	<!-- Icon bodies are generated at build time by scripts/generate-icons.js from vendored SVG
+	     files, never from user input. -->
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html icon.body}
 </svg>
 

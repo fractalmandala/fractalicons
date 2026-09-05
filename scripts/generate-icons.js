@@ -44,6 +44,8 @@ const presentationAttrNames = [
 
 export const familyPrefixMap = {
 	anticons: 'an',
+	coreui: 'cu',
+	famicons: 'fa',
 	iconoir: 'ic',
 	iconoirfill: 'icf',
 	lucide: 'lu',
@@ -140,7 +142,10 @@ function stripSvg(svg) {
 	cleaned = cleaned.replace(/^[\s\S]*?<svg[^>]*>/i, '').replace(/<\/svg>[\s\S]*$/i, '');
 
 	// Remove invisible spacer rects (fill="none" with no stroke)
-	cleaned = cleaned.replace(/<rect\b(?![^>]*\bstroke=)[^>]*\bfill="none"[^>]*\/?>(\s*<\/rect>)?/gi, '');
+	cleaned = cleaned.replace(
+		/<rect\b(?![^>]*\bstroke=)[^>]*\bfill="none"[^>]*\/?>(\s*<\/rect>)?/gi,
+		''
+	);
 
 	let inner = normalizeColor(cleaned.trim());
 
@@ -201,7 +206,11 @@ function writeSetBarrel(setName, icons) {
 		return `export { default as ${exportName} } from './${setName}/${iconName}.js';`;
 	});
 
-	fs.writeFileSync(path.join(libDir, `${setName}.ts`), `${generatedHeader}${lines.join('\n')}\n`, 'utf8');
+	fs.writeFileSync(
+		path.join(libDir, `${setName}.ts`),
+		`${generatedHeader}${lines.join('\n')}\n`,
+		'utf8'
+	);
 }
 
 if (!fs.existsSync(sourceDir)) {
@@ -262,7 +271,9 @@ try {
 	safeRemove(packageTempDir);
 
 	const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-	console.log(`\nSuccessfully generated ${totalIcons} icons across ${totalSets} sets in ${elapsed}s.`);
+	console.log(
+		`\nSuccessfully generated ${totalIcons} icons across ${totalSets} sets in ${elapsed}s.`
+	);
 } finally {
 	fs.rmSync(lockPath, { force: true });
 }

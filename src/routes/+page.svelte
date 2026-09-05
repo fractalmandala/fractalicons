@@ -4,8 +4,10 @@
 	import { phAcorn, phHeart, phLightning } from '$lib/phosphor.js';
 	import { re24HoursLine, reFireLine } from '$lib/remix.js';
 	import { maaLoadingLoop, maaAccountAlertLoop } from '$lib/materialanim.js';
-	import { icAccessibilitySign, icActivity } from '$lib/iconoir.js';
-	import { anAccountBook, anAlert } from '$lib/anticons.js';
+	import { icAccessibilitySign } from '$lib/iconoir.js';
+	import { anAccountBook } from '$lib/anticons.js';
+	import { cuSpeedometer, cuChartLine } from '$lib/coreui.js';
+	import { faFlameOutline, faHeartSharp } from '$lib/famicons.js';
 
 	const sampleIcons = [
 		{ set: 'Lucide (lu)', name: 'luActivity', icon: luActivity },
@@ -19,7 +21,11 @@
 		{ set: 'Material Animated (maa)', name: 'maaLoadingLoop', icon: maaLoadingLoop },
 		{ set: 'Material Animated (maa)', name: 'maaAccountAlertLoop', icon: maaAccountAlertLoop },
 		{ set: 'Iconoir (ic)', name: 'icAccessibilitySign', icon: icAccessibilitySign },
-		{ set: 'Ant Design (an)', name: 'anAccountBook', icon: anAccountBook }
+		{ set: 'Ant Design (an)', name: 'anAccountBook', icon: anAccountBook },
+		{ set: 'CoreUI (cu)', name: 'cuSpeedometer', icon: cuSpeedometer },
+		{ set: 'CoreUI (cu)', name: 'cuChartLine', icon: cuChartLine },
+		{ set: 'Famicons (fa)', name: 'faFlameOutline', icon: faFlameOutline },
+		{ set: 'Famicons (fa)', name: 'faHeartSharp', icon: faHeartSharp }
 	];
 </script>
 
@@ -27,14 +33,14 @@
 	<header style="margin-bottom: 2rem;">
 		<h1 style="font-size: 2rem; margin-bottom: 0.5rem;">fractalicons</h1>
 		<p style="color: #64748b;">
-			11,800+ icons across 11 families with short, ergonomic prefixes for Svelte 5.
+			11,400+ icons across 11 families with short, ergonomic prefixes for Svelte 5.
 		</p>
 	</header>
 
 	<div
 		style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"
 	>
-		{#each sampleIcons as item}
+		{#each sampleIcons as item (item.name)}
 			<div
 				style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem;"
 			>

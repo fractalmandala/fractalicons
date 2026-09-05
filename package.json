@@ -1,6 +1,6 @@
 {
 	"name": "fractalicons",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
@@ -88,6 +88,8 @@
 		"phosphor",
 		"remix",
 		"iconoir",
-		"anticons"
+		"anticons",
+		"coreui",
+		"famicons"
 	]
 }

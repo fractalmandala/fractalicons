@@ -1,0 +1,45 @@
+---
+title: Naming, Aliases, Props
+description: Family prefixes, the dual prefix/full-name export scheme, and every <Icon /> prop.
+type: fractalicons
+---
+
+Available families and their prefixes:
+
+| Family                | Prefix | Icons | Import Path                 | Primary Export Example                  | Alias Example                  |
+| :-------------------- | :----- | :---- | :-------------------------- | :-------------------------------------- | :----------------------------- |
+| **Lucide**            | `lu`   | 1,743 | `fractalicons/lucide`       | `luActivity`, `luSparkles`              | `lucideActivity`               |
+| **Phosphor**          | `ph`   | 1,512 | `fractalicons/phosphor`     | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
+| **Phosphor Fill**     | `phf`  | 1,512 | `fractalicons/phosphorfill` | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
+| **Remix Icon**        | `re`   | 1,444 | `fractalicons/remix`        | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
+| **Remix Icon Fill**   | `ref`  | 1,292 | `fractalicons/remixfill`    | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
+| **Iconoir**           | `ic`   | 1,383 | `fractalicons/iconoir`      | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
+| **Iconoir Fill**      | `icf`  | 288   | `fractalicons/iconoirfill`  | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
+| **Material Animated** | `maa`  | 545   | `fractalicons/materialanim` | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
+| **Ant Design Icons**  | `an`   | 150   | `fractalicons/anticons`     | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
+| **CoreUI Icons**      | `cu`   | 562   | `fractalicons/coreui`       | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
+| **Famicons**          | `fa`   | 1,000 | `fractalicons/famicons`     | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
+
+Every icon is exported under **two names**, both pointing at the same `IconData` object:
+
+- **Prefix name** (short, ergonomic): `luActivity`, `phHeart`, `maaLoadingLoop`.
+- **Full-name alias** (explicit family): `lucideActivity`, `phosphorHeart`, `materialanimLoadingLoop`.
+
+Use whichever reads better in your codebase — they are interchangeable. Names are derived from the upstream icon file name in `camelCase`; icons that begin with a digit are prefixed with `icon` (e.g. a `24-hours` icon becomes `re24HoursLine`).
+
+## `<Icon />` Component Props
+
+| Prop         | Type                                                            | Default        | Description                                                                                                                                                    |
+| :----------- | :-------------------------------------------------------------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`       | `IconData`                                                      | **(required)** | The icon data object imported from any family.                                                                                                                 |
+| `size`       | `number \| string`                                              | `'1em'`        | Size of the icon. Numbers are treated as `px` (e.g. `24` → `24px`); strings pass through (`'1.5rem'`). Defaulting to `1em` makes icons scale with `font-size`. |
+| `title`      | `string`                                                        | `undefined`    | Accessible label for screen readers. Sets `role="img"`, `aria-labelledby`, and a `<title>`.                                                                    |
+| `decorative` | `boolean`                                                       | `!title`       | When `true`, adds `aria-hidden="true"`. Automatically `false` when a `title` is provided.                                                                      |
+| `trigger`    | `'load' \| 'hover' \| 'click' \| 'visible' \| 'loop' \| 'none'` | `'load'`       | When an **animated** icon (`materialanim`) plays. No effect on static icons. See below.                                                                        |
+| `...rest`    | `SVGAttributes`                                                 | `{}`           | All standard SVG element attributes (`class`, `style`, `stroke`, `fill`, `transform`, data attributes, event handlers, …) are forwarded to the `<svg>`.        |
+
+Types are exported from the package root for convenience:
+
+```ts
+import type { IconData, IconSize, AnimationTrigger } from 'fractalicons';
+```

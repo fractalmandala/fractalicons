@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/fractalicons.svg)](https://www.npmjs.com/package/fractalicons)
 [![license](https://img.shields.io/npm/l/fractalicons.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **9,800+ icons across 9 popular open-source icon families** with short, ergonomic import prefixes.
+A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **11,400+ icons across 11 popular open-source icon families** with short, ergonomic import prefixes.
 
 I built this to be able to sample and use multiple icon families through a single workflow and pipeline. Built with love on SvelteKit.
 
@@ -66,6 +66,8 @@ Import the `Icon` component once, then import individual icons from any family's
 	import { reFireLine } from 'fractalicons/remix';
 	import { icAccessibilitySign } from 'fractalicons/iconoir';
 	import { anAccountBook } from 'fractalicons/anticons';
+	import { cuSpeedometer } from 'fractalicons/coreui';
+	import { faFlameOutline } from 'fractalicons/famicons';
 	import { maaLoadingLoop } from 'fractalicons/materialanim';
 </script>
 
@@ -90,19 +92,21 @@ Import the `Icon` component once, then import individual icons from any family's
 
 ## Supported Families & Prefix Reference
 
-| Family | Prefix | Icons | Import Path | Primary Export Example | Alias Example |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Lucide** | `lu` | 1,743 | `fractalicons/lucide` | `luActivity`, `luSparkles` | `lucideActivity` |
-| **Phosphor** | `ph` | 1,512 | `fractalicons/phosphor` | `phAcorn`, `phHeart` | `phosphorAcorn` |
-| **Phosphor Fill** | `phf` | 1,512 | `fractalicons/phosphorfill` | `phfAcornFill`, `phfHeartFill` | `phosphorfillAcornFill` |
-| **Remix Icon** | `re` | 1,444 | `fractalicons/remix` | `reFireLine`, `re24HoursLine` | `remixFireLine` |
-| **Remix Icon Fill** | `ref` | 1,292 | `fractalicons/remixfill` | `refFireFill`, `ref24HoursFill` | `remixfillFireFill` |
-| **Iconoir** | `ic` | 1,383 | `fractalicons/iconoir` | `icAccessibilitySign`, `icActivity` | `iconoirAccessibilitySign` |
-| **Iconoir Fill** | `icf` | 288 | `fractalicons/iconoirfill` | `icfAdobeAfterEffects` | `iconoirfillAdobeAfterEffects` |
-| **Material Animated** | `maa` | 545 | `fractalicons/materialanim` | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop` |
-| **Ant Design Icons** | `an` | 150 | `fractalicons/anticons` | `anAccountBook`, `anAlert` | `anticonsAccountBook` |
+| Family                | Prefix | Icons | Import Path                 | Primary Export Example                  | Alias Example                  |
+| :-------------------- | :----- | :---- | :-------------------------- | :-------------------------------------- | :----------------------------- |
+| **Lucide**            | `lu`   | 1,743 | `fractalicons/lucide`       | `luActivity`, `luSparkles`              | `lucideActivity`               |
+| **Phosphor**          | `ph`   | 1,512 | `fractalicons/phosphor`     | `phAcorn`, `phHeart`                    | `phosphorAcorn`                |
+| **Phosphor Fill**     | `phf`  | 1,512 | `fractalicons/phosphorfill` | `phfAcornFill`, `phfHeartFill`          | `phosphorfillAcornFill`        |
+| **Remix Icon**        | `re`   | 1,444 | `fractalicons/remix`        | `reFireLine`, `re24HoursLine`           | `remixFireLine`                |
+| **Remix Icon Fill**   | `ref`  | 1,292 | `fractalicons/remixfill`    | `refFireFill`, `ref24HoursFill`         | `remixfillFireFill`            |
+| **Iconoir**           | `ic`   | 1,383 | `fractalicons/iconoir`      | `icAccessibilitySign`, `icActivity`     | `iconoirAccessibilitySign`     |
+| **Iconoir Fill**      | `icf`  | 288   | `fractalicons/iconoirfill`  | `icfAdobeAfterEffects`                  | `iconoirfillAdobeAfterEffects` |
+| **Material Animated** | `maa`  | 545   | `fractalicons/materialanim` | `maaLoadingLoop`, `maaAccountAlertLoop` | `materialanimLoadingLoop`      |
+| **Ant Design Icons**  | `an`   | 150   | `fractalicons/anticons`     | `anAccountBook`, `anAlert`              | `anticonsAccountBook`          |
+| **CoreUI Icons**      | `cu`   | 562   | `fractalicons/coreui`       | `cuSpeedometer`, `cuChartLine`          | `coreuiSpeedometer`            |
+| **Famicons**          | `fa`   | 1,000 | `fractalicons/famicons`     | `faFlameOutline`, `faHeartSharp`        | `famiconsFlameOutline`         |
 
-**Total: 9,869 icons across 9 families.**
+**Total: 11,431 icons across 11 families.**
 
 ---
 
@@ -119,14 +123,14 @@ Use whichever reads better in your codebase — they are interchangeable. Names 
 
 ## `<Icon />` Component Props
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `icon` | `IconData` | **(required)** | The icon data object imported from any family. |
-| `size` | `number \| string` | `'1em'` | Size of the icon. Numbers are treated as `px` (e.g. `24` → `24px`); strings pass through (`'1.5rem'`). Defaulting to `1em` makes icons scale with `font-size`. |
-| `title` | `string` | `undefined` | Accessible label for screen readers. Sets `role="img"`, `aria-labelledby`, and a `<title>`. |
-| `decorative` | `boolean` | `!title` | When `true`, adds `aria-hidden="true"`. Automatically `false` when a `title` is provided. |
-| `trigger` | `'load' \| 'hover' \| 'click' \| 'visible' \| 'loop' \| 'none'` | `'load'` | When an **animated** icon (`materialanim`) plays. No effect on static icons. See below. |
-| `...rest` | `SVGAttributes` | `{}` | All standard SVG element attributes (`class`, `style`, `stroke`, `fill`, `transform`, data attributes, event handlers, …) are forwarded to the `<svg>`. |
+| Prop         | Type                                                            | Default        | Description                                                                                                                                                    |
+| :----------- | :-------------------------------------------------------------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `icon`       | `IconData`                                                      | **(required)** | The icon data object imported from any family.                                                                                                                 |
+| `size`       | `number \| string`                                              | `'1em'`        | Size of the icon. Numbers are treated as `px` (e.g. `24` → `24px`); strings pass through (`'1.5rem'`). Defaulting to `1em` makes icons scale with `font-size`. |
+| `title`      | `string`                                                        | `undefined`    | Accessible label for screen readers. Sets `role="img"`, `aria-labelledby`, and a `<title>`.                                                                    |
+| `decorative` | `boolean`                                                       | `!title`       | When `true`, adds `aria-hidden="true"`. Automatically `false` when a `title` is provided.                                                                      |
+| `trigger`    | `'load' \| 'hover' \| 'click' \| 'visible' \| 'loop' \| 'none'` | `'load'`       | When an **animated** icon (`materialanim`) plays. No effect on static icons. See below.                                                                        |
+| `...rest`    | `SVGAttributes`                                                 | `{}`           | All standard SVG element attributes (`class`, `style`, `stroke`, `fill`, `transform`, data attributes, event handlers, …) are forwarded to the `<svg>`.        |
 
 Types are exported from the package root for convenience:
 
@@ -140,14 +144,14 @@ import type { IconData, IconSize, AnimationTrigger } from 'fractalicons';
 
 The animated family (`materialanim`) accepts a `trigger` prop controlling **when** the animation runs. Non-playing icons render their finished (fully drawn) state, and `prefers-reduced-motion` is always respected.
 
-| `trigger` | Behavior |
-| :--- | :--- |
-| `load` | Play once when the icon mounts *(default — matches prior behavior)* |
-| `hover` | Replay each time the pointer enters |
-| `click` | Replay on click |
-| `visible` | Play once when scrolled into view |
-| `loop` | Play continuously |
-| `none` | Never animate; show the finished state |
+| `trigger` | Behavior                                                            |
+| :-------- | :------------------------------------------------------------------ |
+| `load`    | Play once when the icon mounts _(default — matches prior behavior)_ |
+| `hover`   | Replay each time the pointer enters                                 |
+| `click`   | Replay on click                                                     |
+| `visible` | Play once when scrolled into view                                   |
+| `loop`    | Play continuously                                                   |
+| `none`    | Never animate; show the finished state                              |
 
 ```svelte
 <script lang="ts">
@@ -187,23 +191,40 @@ Icons are unstyled SVG primitives, so you drive color, size, and motion entirely
 
 <!-- 3. Animate on click via a toggled state class -->
 <button class="bell" class:ringing onclick={() => (ringing = !ringing)}>
-	<Icon icon={luBell} /> {ringing ? 'Ring!' : 'Notify'}
+	<Icon icon={luBell} />
+	{ringing ? 'Ring!' : 'Notify'}
 </button>
 
 <style>
-	button { display: inline-flex; align-items: center; gap: 0.5rem; }
+	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
 
 	/* smooth transitions on the icon */
-	button :global(.fractalicon) { transition: transform 0.2s ease, color 0.2s ease; }
+	button :global(.fractalicon) {
+		transition:
+			transform 0.2s ease,
+			color 0.2s ease;
+	}
 
 	/* 1. color inherits — just set it on hover */
-	.like:hover { color: crimson; }
+	.like:hover {
+		color: crimson;
+	}
 
 	/* 2. transform the icon based on the parent's hover */
-	.settings:hover :global(.fractalicon) { transform: scale(1.3) rotate(45deg); color: #2563eb; }
+	.settings:hover :global(.fractalicon) {
+		transform: scale(1.3) rotate(45deg);
+		color: #2563eb;
+	}
 
 	/* 3. react to a state class */
-	.bell.ringing :global(.fractalicon) { transform: rotate(360deg); color: #d97706; }
+	.bell.ringing :global(.fractalicon) {
+		transform: rotate(360deg);
+		color: #d97706;
+	}
 </style>
 ```
 
@@ -227,7 +248,8 @@ Because each icon is just an `IconData` object, you can store icons in variables
 </script>
 
 <button onclick={() => (dark = !dark)}>
-	<Icon icon={current} /> {dark ? 'Dark' : 'Light'}
+	<Icon icon={current} />
+	{dark ? 'Dark' : 'Light'}
 </button>
 ```
 
@@ -302,14 +324,16 @@ To add or update a family, drop its `.svg` files into `src/lib/icons/<family>/`,
 
 All icons included in this library belong to their respective creators and open-source projects. We are immensely grateful to the open-source icon design community:
 
-| Icon Family | Author / Organization | License | Repository & License File |
-| :--- | :--- | :--- | :--- |
-| **Lucide** | Lucide Contributors / Cole Bemis | **ISC License** | [lucide-icons/lucide LICENSE](https://github.com/lucide-icons/lucide/blob/main/LICENSE) |
-| **Phosphor Icons** | Tobias Fried & Helena Zhang | **MIT License** | [phosphor-icons/core LICENSE](https://github.com/phosphor-icons/core/blob/main/LICENSE) |
-| **Remix Icon** | Remix Design | **Apache License 2.0** | [Remix-Design/RemixIcon License](https://github.com/Remix-Design/RemixIcon/blob/master/License) |
-| **Iconoir** | Luca Burgio & Iconoir Team | **MIT License** | [iconoir-icons/iconoir LICENSE](https://github.com/iconoir-icons/iconoir/blob/main/LICENSE) |
-| **Ant Design Icons** | Ant Financial / Ant Design Team | **MIT License** | [ant-design/ant-design-icons LICENSE](https://github.com/ant-design/ant-design-icons/blob/master/LICENSE) |
-| **Material Design Icons** | Google LLC | **Apache License 2.0** | [google/material-design-icons LICENSE](https://github.com/google/material-design-icons/blob/master/LICENSE) |
+| Icon Family               | Author / Organization                      | License                       | Repository & License File                                                                                   |
+| :------------------------ | :----------------------------------------- | :---------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| **Lucide**                | Lucide Contributors / Cole Bemis           | **ISC License**               | [lucide-icons/lucide LICENSE](https://github.com/lucide-icons/lucide/blob/main/LICENSE)                     |
+| **Phosphor Icons**        | Tobias Fried & Helena Zhang                | **MIT License**               | [phosphor-icons/core LICENSE](https://github.com/phosphor-icons/core/blob/main/LICENSE)                     |
+| **Remix Icon**            | Remix Design                               | **Apache License 2.0**        | [Remix-Design/RemixIcon License](https://github.com/Remix-Design/RemixIcon/blob/master/License)             |
+| **Iconoir**               | Luca Burgio & Iconoir Team                 | **MIT License**               | [iconoir-icons/iconoir LICENSE](https://github.com/iconoir-icons/iconoir/blob/main/LICENSE)                 |
+| **Ant Design Icons**      | Ant Financial / Ant Design Team            | **MIT License**               | [ant-design/ant-design-icons LICENSE](https://github.com/ant-design/ant-design-icons/blob/master/LICENSE)   |
+| **CoreUI Icons**          | CoreUI (Łukasz Holeczek)                   | **CC BY 4.0** (free icon set) | [coreui/coreui-icons LICENSE](https://github.com/coreui/coreui-icons/blob/main/LICENSE)                     |
+| **Famicons**              | Family.js Team (fork of Ionicons by Ionic) | **MIT License**               | [familyjs/famicons LICENSE](https://github.com/familyjs/famicons/blob/main/LICENSE)                         |
+| **Material Design Icons** | Google LLC                                 | **Apache License 2.0**        | [google/material-design-icons LICENSE](https://github.com/google/material-design-icons/blob/master/LICENSE) |
 
 Each family remains under its original license; retain the relevant attribution when redistributing.
 
