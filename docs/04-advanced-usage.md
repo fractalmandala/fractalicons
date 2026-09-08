@@ -52,4 +52,4 @@ To render a whole family (for an icon picker or docs page), import the family na
 
 ## Tree-shaking
 
-Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each icon is its own module, so your bundle contains only the icons you actually reference — no matter how large the family is.
+Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each family is a single module of top-level icon declarations, so bundlers drop everything you don't reference — your bundle contains only the icons you actually import, no matter how large the family is.

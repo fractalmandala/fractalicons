@@ -6,10 +6,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const packageDir = path.resolve(__dirname, '..');
 
-// Support both 'src/lib/icons' and 'src/lib/iconsets'
-const iconsDir = path.join(packageDir, 'src/lib/icons');
-const iconsetsDir = path.join(packageDir, 'src/lib/iconsets');
-const sourceDir = fs.existsSync(iconsDir) ? iconsDir : iconsetsDir;
+// Vendored upstream SVGs live outside src/lib so svelte-package never copies
+// them into dist (they are build inputs, not published files).
+const sourceDir = path.join(packageDir, 'vendor/icons');
 const libDir = path.join(packageDir, 'src/lib');
 const lockPath = path.join(packageDir, '.generate-icons.lock');
 const packageTempDir = path.join(packageDir, '.svelte-kit/__package__');
@@ -189,57 +188,52 @@ function stripSvg(svg) {
 }
 
 function cleanGeneratedSet(setName) {
-	const setDir = path.join(libDir, setName);
-	const setBarrel = path.join(libDir, `${setName}.ts`);
-
-	safeRemove(setDir);
-	safeRemove(setBarrel);
+	// Remove the legacy per-icon directory (pre-0.3.0 layout) and the
+	// single-file module, which is rewritten below.
+	safeRemove(path.join(libDir, setName));
+	safeRemove(path.join(libDir, `${setName}.ts`));
 }
 
-function writeIconModule(setName, iconName, svg) {
-	const setDir = path.join(libDir, setName);
-	const modulePath = path.join(setDir, `${iconName}.ts`);
+function toIconDeclaration(setName, iconName, svg) {
 	const exportName = toNamedExport(setName, iconName);
 	const fullAliasName = toFullNameExport(setName, iconName);
 	const viewBox = extractViewBox(svg);
 	const body = stripSvg(svg);
 
-	fs.mkdirSync(setDir, { recursive: true });
+	// Compact JSON + an explicit IconData annotation (instead of `as const`):
+	// keeps the emitted JS small and collapses the .d.ts to a short
+	// declaration instead of a full string-literal type per icon.
+	const data = JSON.stringify({ name: iconName, set: setName, viewBox, body });
+	let declaration = `export const ${exportName}: IconData = ${data};`;
+	if (fullAliasName !== exportName) {
+		declaration += `\nexport { ${exportName} as ${fullAliasName} };`;
+	}
 
-	const aliasLine =
-		fullAliasName !== exportName ? `\nexport { ${exportName} as ${fullAliasName} };` : '';
-
-	fs.writeFileSync(
-		modulePath,
-		`${generatedHeader}import type { IconData } from '../types.js';\n\nconst ${exportName} = ${JSON.stringify(
-			{
-				name: iconName,
-				set: setName,
-				viewBox,
-				body
-			},
-			null,
-			'\t'
-		)} as const satisfies IconData;\n\nexport default ${exportName};\nexport { ${exportName} };${aliasLine}\n`,
-		'utf8'
-	);
-
-	return { exportName, fullAliasName, iconName };
+	return { exportName, fullAliasName, iconName, declaration };
 }
 
-function writeSetBarrel(setName, icons) {
-	const lines = icons.map(({ exportName, fullAliasName, iconName }) => {
-		if (fullAliasName && fullAliasName !== exportName) {
-			return `export { default as ${exportName}, ${fullAliasName} } from './${setName}/${iconName}.js';`;
+function writeSetModule(setName, icons) {
+	// One self-contained module per family. Bundlers drop unused top-level
+	// statements, so named imports shake out to just the icons referenced —
+	// with one file resolution per family instead of thousands.
+	const seen = new Set();
+	const lines = [];
+	for (const icon of icons) {
+		if (seen.has(icon.exportName)) {
+			console.warn(`${setName}: duplicate export ${icon.exportName} — keeping first`);
+			continue;
 		}
-		return `export { default as ${exportName} } from './${setName}/${iconName}.js';`;
-	});
+		seen.add(icon.exportName);
+		lines.push(icon.declaration);
+	}
 
 	fs.writeFileSync(
 		path.join(libDir, `${setName}.ts`),
-		`${generatedHeader}${lines.join('\n')}\n`,
+		`${generatedHeader}import type { IconData } from './types.js';\n\n${lines.join('\n')}\n`,
 		'utf8'
 	);
+
+	return lines.length;
 }
 
 if (!fs.existsSync(sourceDir)) {
@@ -287,13 +281,13 @@ try {
 			const iconName = toSafePathName(file);
 			const svg = fs.readFileSync(path.join(setSourceDir, file), 'utf8');
 
-			return writeIconModule(setName, iconName, svg);
+			return toIconDeclaration(setName, iconName, svg);
 		});
 
-		writeSetBarrel(setName, icons);
-		totalIcons += icons.length;
+		const emitted = writeSetModule(setName, icons);
+		totalIcons += emitted;
 		totalSets++;
-		console.log(`${setName} (${getPrefix(setName)}): generated ${icons.length} icons`);
+		console.log(`${setName} (${getPrefix(setName)}): generated ${emitted} icons`);
 	}
 
 	// Pre-clean .svelte-kit/__package__ so svelte-package never hits ENOTEMPTY on macOS APFS

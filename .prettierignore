@@ -9,9 +9,7 @@ bun.lockb
 /static/
 
 # Generated icon modules — written by scripts/generate-icons.js, never hand-edited.
-# The glob covers every per-family module dir (and the src/lib/icons SVG sources);
-# the barrels have to be listed, so add a line when you add a family to familyPrefixMap.
-/src/lib/*/
+# One single-file module per family; add a line when you add a family to familyPrefixMap.
 /src/lib/anticons.ts
 /src/lib/boxregular.ts
 /src/lib/boxsolid.ts

@@ -8,7 +8,7 @@ A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **27,000
 I built this to be able to sample and use multiple icon families through a single workflow and pipeline. Built with love on SvelteKit.
 
 - **Svelte 5 Runes** — built specifically for Svelte 5 with native rune reactivity.
-- **Tree-Shakeable** — each icon is compiled to a lightweight TypeScript module (`IconData` payload); you only ship what you import.
+- **Tree-Shakeable** — each family compiles to a single module of `IconData` payloads; named imports shake down to just the icons you reference (~0.3 KB per icon in your bundle).
 - **Prefix-cased** — fast to type (`lu` for Lucide, `ph` for Phosphor, `re` for Remix, etc.) with full-name aliases preserved.
 - **Color & Stroke Preserved** — colors are normalized to `currentColor` and presentation attributes (strokes, stroke-widths, animations, fill styles) are kept intact.
 - **Animated icons** — the Material Animated family plays CSS animations with a configurable `trigger` (hover, click, on-view, loop…).
@@ -24,6 +24,7 @@ I built this to be able to sample and use multiple icon families through a singl
 - [Quick Start](#quick-start)
 - [Supported Families & Prefix Reference](#supported-families--prefix-reference)
 - [Naming & Aliases](#naming--aliases)
+- [Migrating 0.2.x → 0.3.0](#migrating-02x--030)
 - [`<Icon />` Component Props](#-icon---component-props)
 - [Animation Triggers](#animation-triggers)
 - [Styling & Interaction](#styling--interaction)
@@ -136,6 +137,14 @@ Every icon is exported under **two names**, both pointing at the same `IconData`
 - **Full-name alias** (explicit family): `lucideActivity`, `phosphorHeart`, `materialanimLoadingLoop`.
 
 Use whichever reads better in your codebase — they are interchangeable. Names are derived from the upstream icon file name in `camelCase`; icons that begin with a digit are prefixed with `icon` (e.g. a `24-hours` icon becomes `re24HoursLine`).
+
+---
+
+## Migrating 0.2.x → 0.3.0
+
+- **Per-icon deep imports are gone.** Each family is now a single module, so `fractalicons/lucide/activity` no longer resolves. Import from the family subpath instead: `import { luActivity } from 'fractalicons/lucide'`.
+- **The `"./*"` wildcard export was replaced with explicit per-family subpaths.** All documented `fractalicons/<family>` imports and `fractalicons/Icon.svelte` work unchanged — use extensionless subpaths (`fractalicons/lucide`, not `fractalicons/lucide.js`) so types resolve.
+- Export names, aliases, `IconData`, and the `<Icon />` API are unchanged.
 
 ---
 
@@ -300,7 +309,7 @@ To render a whole family (for an icon picker or docs page), import the family na
 
 ### Tree-shaking
 
-Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each icon is its own module, so your bundle contains only the icons you actually reference — no matter how large the family is.
+Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each family is a single module of top-level icon declarations, so bundlers drop everything you don't reference — your bundle contains only the icons you actually import, no matter how large the family is (a single icon bundles to roughly 0.3 KB).
 
 ---
 
@@ -323,18 +332,18 @@ The `Icon` component wraps `body` in an `<svg>` with the right `viewBox`, size, 
 
 ## Local Development & Contributing
 
-Icons are generated from raw SVG source folders under `src/lib/icons/<family>/` into typed modules under `src/lib/<family>/`.
+Icons are generated from raw SVG source folders under `vendor/icons/<family>/` into single-file typed modules at `src/lib/<family>.ts`. Vendor sources live outside `src/lib` so they never ship in the published package.
 
 ```sh
 pnpm install
 pnpm dev          # run the demo site (src/routes)
-pnpm generate     # regenerate icon modules from src/lib/icons/**
-pnpm build        # generate + build + package for publishing
+pnpm generate     # regenerate icon modules from vendor/icons/** (run when sources change)
+pnpm build        # generate + build demo + package for publishing
 pnpm check        # svelte-check
 pnpm lint         # prettier + eslint
 ```
 
-To add or update a family, drop its `.svg` files into `src/lib/icons/<family>/`, add the family's short prefix to `familyPrefixMap` in `scripts/generate-icons.js`, and run `pnpm generate`. Colors are normalized to `currentColor` and export names are derived automatically.
+To add or update a family, drop its `.svg` files into `vendor/icons/<family>/`, add the family's short prefix to `familyPrefixMap` in `scripts/generate-icons.js`, and run `pnpm generate`. Colors are normalized to `currentColor` and export names are derived automatically.
 
 ---
 
