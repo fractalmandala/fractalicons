@@ -65,7 +65,8 @@ Icons are unstyled SVG primitives, so you drive color, size, and motion entirely
 
 > In a plain (non-Svelte-scoped) stylesheet you can drop the `:global(...)` wrapper: `.settings:hover .fractalicon { … }`.
 
-## Animation Triggers
+
+## Animations
 
 The animated family (`materialanim`) accepts a `trigger` prop controlling **when** the animation runs. Non-playing icons render their finished (fully drawn) state, and `prefers-reduced-motion` is always respected.
 

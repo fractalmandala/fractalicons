@@ -4,8 +4,6 @@ description: Family prefixes, the dual prefix/full-name export scheme, and every
 type: fractalicons
 ---
 
-Available families and their prefixes:
-
 | Family                 | Prefix | Icons | Import Path                     | Primary Export Example                  | Alias Example                  |
 | :--------------------- | :----- | :---- | :------------------------------ | :-------------------------------------- | :----------------------------- |
 | **Lucide**             | `lu`   | 1,743 | `fractalicons/lucide`           | `luActivity`, `luSparkles`              | `lucideActivity`               |
@@ -34,6 +32,11 @@ Available families and their prefixes:
 | **Tabler**             | `tb`   | 5,130 | `fractalicons/tabler`           | `tbBell`, `tbBrandGithub`               | `tablerBell`                   |
 | **Tabler Filled**      | `tbf`  | 1,054 | `fractalicons/tablerfill`       | `tbfAccessible`, `tbfAdCircle`          | `tablerfillAccessible`         |
 
+**Total: 27,469 icons across 25 families.**
+
+
+## Naming & Aliases
+
 Every icon is exported under **two names**, both pointing at the same `IconData` object:
 
 - **Prefix name** (short, ergonomic): `luActivity`, `phHeart`, `maaLoadingLoop`.
@@ -41,7 +44,8 @@ Every icon is exported under **two names**, both pointing at the same `IconData`
 
 Use whichever reads better in your codebase — they are interchangeable. Names are derived from the upstream icon file name in `camelCase`; icons that begin with a digit are prefixed with `icon` (e.g. a `24-hours` icon becomes `re24HoursLine`).
 
-## `<Icon />` Component Props
+
+## Component Props
 
 | Prop         | Type                                                            | Default        | Description                                                                                                                                                    |
 | :----------- | :-------------------------------------------------------------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |

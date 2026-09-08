@@ -52,4 +52,37 @@ To render a whole family (for an icon picker or docs page), import the family na
 
 ## Tree-shaking
 
-Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each family is a single module of top-level icon declarations, so bundlers drop everything you don't reference — your bundle contains only the icons you actually import, no matter how large the family is.
+Named imports (`import { luActivity } from 'fractalicons/lucide'`) are individually tree-shakeable: each family is a single module of top-level icon declarations, so bundlers drop everything you don't reference — your bundle contains only the icons you actually import, no matter how large the family is (a single icon bundles to roughly 0.3 KB).
+
+---
+
+## How It Works — `IconData`
+
+Every icon compiles to a tiny, serializable data object:
+
+```ts
+export interface IconData {
+	name: string; // e.g. "activity"
+	set: string; // e.g. "lucide"
+	viewBox: string; // e.g. "0 0 24 24"
+	body: string; // inner SVG markup, with colors normalized to currentColor
+}
+```
+
+The `Icon` component wraps `body` in an `<svg>` with the right `viewBox`, size, accessibility attributes, and the `.fractalicon` class. Colors are normalized to `currentColor` at generation time and presentation attributes (stroke widths, line caps, embedded `<style>`/`@keyframes` for animated sets) are preserved.
+
+
+## Local Development & Contributing
+
+Icons are generated from raw SVG source folders under `vendor/icons/<family>/` into single-file typed modules at `src/lib/<family>.ts`. Vendor sources live outside `src/lib` so they never ship in the published package.
+
+```sh
+pnpm install
+pnpm dev          # run the demo site (src/routes)
+pnpm generate     # regenerate icon modules from vendor/icons/** (run when sources change)
+pnpm build        # generate + build demo + package for publishing
+pnpm check        # svelte-check
+pnpm lint         # prettier + eslint
+```
+
+To add or update a family, drop its `.svg` files into `vendor/icons/<family>/`, add the family's short prefix to `familyPrefixMap` in `scripts/generate-icons.js`, and run `pnpm generate`. Colors are normalized to `currentColor` and export names are derived automatically.

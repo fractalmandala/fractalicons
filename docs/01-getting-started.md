@@ -4,10 +4,10 @@ description: Install fractalicons, import the Icon component, and render icons f
 type: fractalicons
 ---
 
-Requires:
 
 - **Svelte 5** (`svelte@^5.0.0`, declared as a peer dependency) — the `Icon` component uses runes.
 - **ESM only** — the package ships as ES modules (`"type": "module"`). Works out of the box with SvelteKit, Vite, and any modern bundler.
+
 
 ## Installation
 
@@ -18,6 +18,9 @@ npm install fractalicons
 # or
 yarn add fractalicons
 ```
+
+
+## Quick Start
 
 Import the `Icon` component once, then import individual icons from any family's subpath. Icons are plain data objects — you pass them to `Icon`.
 
@@ -54,3 +57,9 @@ Import the `Icon` component once, then import individual icons from any family's
 <!-- Animated icon with a play trigger -->
 <Icon icon={maaLoadingLoop} size={32} trigger="hover" />
 ```
+
+## Migrating 0.2.x → 0.3.0
+
+- **Per-icon deep imports are gone.** Each family is now a single module, so `fractalicons/lucide/activity` no longer resolves. Import from the family subpath instead: `import { luActivity } from 'fractalicons/lucide'`.
+- **The `"./*"` wildcard export was replaced with explicit per-family subpaths.** All documented `fractalicons/<family>` imports and `fractalicons/Icon.svelte` work unchanged — use extensionless subpaths (`fractalicons/lucide`, not `fractalicons/lucide.js`) so types resolve.
+- Export names, aliases, `IconData`, and the `<Icon />` API are unchanged.

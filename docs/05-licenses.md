@@ -10,6 +10,8 @@ All icons included in this library belong to their respective creators and open-
 
 ## Upstream Licenses & Attribution
 
+All icons included in this library belong to their respective creators and open-source projects. We are immensely grateful to the open-source icon design community:
+
 | Icon Family               | Author / Organization                      | License                                            | Repository & License File                                                                                    |
 | :------------------------ | :----------------------------------------- | :------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | **Lucide**                | Lucide Contributors / Cole Bemis           | **ISC License**                                    | [lucide-icons/lucide LICENSE](https://github.com/lucide-icons/lucide/blob/main/LICENSE)                      |
