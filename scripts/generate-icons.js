@@ -79,7 +79,7 @@ function getPrefix(setName) {
 	return familyPrefixMap[setName] || setName;
 }
 
-function toIdentifierPart(value) {
+export function toIdentifierPart(value) {
 	return value
 		.split(/[^a-zA-Z0-9]+/)
 		.filter(Boolean)
@@ -87,7 +87,7 @@ function toIdentifierPart(value) {
 		.join('');
 }
 
-function toNamedExport(setName, iconName) {
+export function toNamedExport(setName, iconName) {
 	const prefix = getPrefix(setName);
 	const name = `${prefix}-${iconName}`;
 	const identifier = name.charAt(0).toLowerCase() + toIdentifierPart(name).slice(1);
@@ -95,18 +95,18 @@ function toNamedExport(setName, iconName) {
 	return /^[0-9]/.test(identifier) ? `icon${identifier}` : identifier;
 }
 
-function toFullNameExport(setName, iconName) {
+export function toFullNameExport(setName, iconName) {
 	const name = `${setName}-${iconName}`;
 	const identifier = name.charAt(0).toLowerCase() + toIdentifierPart(name).slice(1);
 
 	return /^[0-9]/.test(identifier) ? `icon${identifier}` : identifier;
 }
 
-function toSafePathName(filename) {
+export function toSafePathName(filename) {
 	return filename.replace(/\.svg$/i, '').toLowerCase();
 }
 
-function extractViewBox(svg) {
+export function extractViewBox(svg) {
 	const vbMatch = svg.match(/<svg[^>]*\bviewBox="([^"]+)"/i);
 	if (vbMatch) return vbMatch[1];
 
@@ -123,7 +123,7 @@ function escapeRegExp(value) {
 	return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function normalizeColor(svg) {
+export function normalizeColor(svg) {
 	let result = svg;
 
 	// Case-insensitive: upstream sets mix `#0F172A` and `#0f172a` for the same black.
@@ -142,7 +142,7 @@ function normalizeColor(svg) {
 	return result;
 }
 
-function stripSvg(svg) {
+export function stripSvg(svg) {
 	const svgTagMatch = svg.match(/<svg\b([^>]*)>/i);
 	const rootAttrs = svgTagMatch ? svgTagMatch[1] : '';
 
@@ -194,7 +194,7 @@ function cleanGeneratedSet(setName) {
 	safeRemove(path.join(libDir, `${setName}.ts`));
 }
 
-function toIconDeclaration(setName, iconName, svg) {
+export function toIconDeclaration(setName, iconName, svg) {
 	const exportName = toNamedExport(setName, iconName);
 	const fullAliasName = toFullNameExport(setName, iconName);
 	const viewBox = extractViewBox(svg);
@@ -212,6 +212,8 @@ function toIconDeclaration(setName, iconName, svg) {
 	return { exportName, fullAliasName, iconName, declaration };
 }
 
+let duplicateCount = 0;
+
 function writeSetModule(setName, icons) {
 	// One self-contained module per family. Bundlers drop unused top-level
 	// statements, so named imports shake out to just the icons referenced —
@@ -220,7 +222,8 @@ function writeSetModule(setName, icons) {
 	const lines = [];
 	for (const icon of icons) {
 		if (seen.has(icon.exportName)) {
-			console.warn(`${setName}: duplicate export ${icon.exportName} — keeping first`);
+			console.error(`${setName}: DUPLICATE export ${icon.exportName} — keeping first`);
+			duplicateCount++;
 			continue;
 		}
 		seen.add(icon.exportName);
@@ -236,67 +239,79 @@ function writeSetModule(setName, icons) {
 	return lines.length;
 }
 
-if (!fs.existsSync(sourceDir)) {
-	console.log(`No icons directory found at ${sourceDir}`);
-	process.exit(0);
-}
+// Main guard: only run generation when executed directly, not when imported for tests.
+const isMain = process.argv[1] && fileURLToPath(import.meta.url).endsWith(process.argv[1].replace(/\\/g, '/'));
 
-try {
-	fs.writeFileSync(lockPath, String(process.pid), { flag: 'wx' });
-} catch {
-	console.error('Icon generation is already running.');
-	process.exit(1);
-}
-
-// Clean any leftover build cache to prevent ENOTEMPTY in @sveltejs/package
-safeRemove(packageTempDir);
-
-const startTime = Date.now();
-const setNames = fs
-	.readdirSync(sourceDir, { withFileTypes: true })
-	.filter((entry) => entry.isDirectory())
-	.map((entry) => entry.name)
-	.sort();
-
-let totalIcons = 0;
-let totalSets = 0;
-
-try {
-	for (const setName of setNames) {
-		const setSourceDir = path.join(sourceDir, setName);
-		const svgFiles = fs
-			.readdirSync(setSourceDir, { withFileTypes: true })
-			.filter((entry) => entry.isFile() && entry.name.endsWith('.svg'))
-			.map((entry) => entry.name)
-			.sort();
-
-		if (svgFiles.length === 0) {
-			console.log(`${setName}: skipped (0 SVGs found)`);
-			continue;
-		}
-
-		cleanGeneratedSet(setName);
-
-		const icons = svgFiles.map((file) => {
-			const iconName = toSafePathName(file);
-			const svg = fs.readFileSync(path.join(setSourceDir, file), 'utf8');
-
-			return toIconDeclaration(setName, iconName, svg);
-		});
-
-		const emitted = writeSetModule(setName, icons);
-		totalIcons += emitted;
-		totalSets++;
-		console.log(`${setName} (${getPrefix(setName)}): generated ${emitted} icons`);
+if (isMain) {
+	if (!fs.existsSync(sourceDir)) {
+		console.log(`No icons directory found at ${sourceDir}`);
+		process.exit(0);
 	}
 
-	// Pre-clean .svelte-kit/__package__ so svelte-package never hits ENOTEMPTY on macOS APFS
+	try {
+		fs.writeFileSync(lockPath, String(process.pid), { flag: 'wx' });
+	} catch {
+		console.error('Icon generation is already running.');
+		process.exit(1);
+	}
+
+	// Clean any leftover build cache to prevent ENOTEMPTY in @sveltejs/package
 	safeRemove(packageTempDir);
 
-	const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-	console.log(
-		`\nSuccessfully generated ${totalIcons} icons across ${totalSets} sets in ${elapsed}s.`
-	);
-} finally {
-	fs.rmSync(lockPath, { force: true });
+	const startTime = Date.now();
+	const setNames = fs
+		.readdirSync(sourceDir, { withFileTypes: true })
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => entry.name)
+		.sort();
+
+	let totalIcons = 0;
+	let totalSets = 0;
+
+	try {
+		for (const setName of setNames) {
+			const setSourceDir = path.join(sourceDir, setName);
+			const svgFiles = fs
+				.readdirSync(setSourceDir, { withFileTypes: true })
+				.filter((entry) => entry.isFile() && entry.name.endsWith('.svg'))
+				.map((entry) => entry.name)
+				.sort();
+
+			if (svgFiles.length === 0) {
+				console.log(`${setName}: skipped (0 SVGs found)`);
+				continue;
+			}
+
+			cleanGeneratedSet(setName);
+
+			const icons = svgFiles.map((file) => {
+				const iconName = toSafePathName(file);
+				const svg = fs.readFileSync(path.join(setSourceDir, file), 'utf8');
+
+				return toIconDeclaration(setName, iconName, svg);
+			});
+
+			const emitted = writeSetModule(setName, icons);
+			totalIcons += emitted;
+			totalSets++;
+			console.log(`${setName} (${getPrefix(setName)}): generated ${emitted} icons`);
+		}
+
+		// Pre-clean .svelte-kit/__package__ so svelte-package never hits ENOTEMPTY on macOS APFS
+		safeRemove(packageTempDir);
+
+		const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+		console.log(
+			`\nSuccessfully generated ${totalIcons} icons across ${totalSets} sets in ${elapsed}s.`
+		);
+
+		if (duplicateCount > 0) {
+			console.error(
+				`${duplicateCount} duplicate(s) found — investigate upstream naming collisions.`
+			);
+			process.exitCode = 1;
+		}
+	} finally {
+		fs.rmSync(lockPath, { force: true });
+	}
 }

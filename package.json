@@ -1,6 +1,7 @@
 {
 	"name": "fractalicons",
-	"version": "0.3.0",
+	"version": "0.3.1",
+	"description": "A comprehensive, tree-shakeable icon library for Svelte 5 — 27,000+ icons across 25 families with ergonomic short-prefix imports.",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
@@ -13,16 +14,15 @@
 		"check": "npm run generate && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test": "node --test scripts/generate-icons.test.js"
 	},
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"sideEffects": [
-		"**/*.css"
-	],
+	"sideEffects": false,
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
@@ -250,6 +250,17 @@
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fractalmandala/fractalicons.git"
+	},
+	"homepage": "https://github.com/fractalmandala/fractalicons#readme",
+	"bugs": {
+		"url": "https://github.com/fractalmandala/fractalicons/issues"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

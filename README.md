@@ -1,7 +1,8 @@
 # fractalicons
 
-[![npm version](https://img.shields.io/npm/v/fractalicons.svg)](https://www.npmjs.com/package/fractalicons)
-[![license](https://img.shields.io/npm/l/fractalicons.svg)](https://opensource.org/licenses/MIT)
+![npm version](https://img.shields.io/npm/v/fractalicons.svg)
+
+![license](https://img.shields.io/npm/l/fractalicons.svg)
 
 A comprehensive, tree-shakeable icon library for **Svelte 5** featuring **27,000+ icons across 25 popular open-source icon families** with short, ergonomic import prefixes.
 
@@ -17,12 +18,10 @@ I built this to be able to sample and use multiple icon families through a singl
 
 [Read Full Docs](https://github.com/fractalmandala/fractalicons/tree/main/docs)
 
-
 ## Requirements
 
 - **Svelte 5** (`svelte@^5.0.0`, declared as a peer dependency) — the `Icon` component uses runes.
 - **ESM only** — the package ships as ES modules (`"type": "module"`). Works out of the box with SvelteKit, Vite, and any modern bundler.
-
 
 ## Installation
 
