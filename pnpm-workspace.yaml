@@ -1,0 +1,9 @@
+packages:
+  - packages/*
+  - apps/*
+  - tools/*
+  - e2e
+allowBuilds:
+  esbuild: true
+patchedDependencies:
+  '@sveltejs/package': patches/@sveltejs__package.patch

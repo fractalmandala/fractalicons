@@ -1,0 +1,29 @@
+{
+	"parityNote": "every animated set now has its static families in `icons`, and every `icons` family can be animated through the bridge.",
+	"phases": [
+		{
+			"id": "0",
+			"what": "Templates and generator work on every icon",
+			"status": "**done**",
+			"tests": "e2e `tests/phase0-templates.e2e.ts` (42), unit `scripts/transform.test.mjs` (7)"
+		},
+		{
+			"id": "1",
+			"what": "`AnimatedIcon` takes an icon from `@fractaldesign/icons`",
+			"status": "**done**",
+			"tests": "e2e `tests/phase1-bridge.e2e.ts`"
+		},
+		{
+			"id": "2",
+			"what": "Per-family guidance as data, and a docs page per family",
+			"status": "**done**",
+			"tests": "e2e `tests/phase2-families.e2e.ts`"
+		},
+		{
+			"id": "3",
+			"what": "Parity: the missing families in `icons`, one Heroicons release",
+			"status": "**done**",
+			"tests": "e2e `tests/phase3-parity.e2e.ts`"
+		}
+	]
+}

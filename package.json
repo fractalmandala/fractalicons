@@ -1,0 +1,13 @@
+{
+	"name": "fractalicons",
+	"private": true,
+	"description": "Fractal icon packages for Svelte 5: static, animated and morphing.",
+	"packageManager": "pnpm@11.0.4",
+	"scripts": {
+		"sources": "node scripts/fetch-sources.mjs",
+		"sources:check": "node scripts/fetch-sources.mjs --check",
+		"build": "pnpm -r build",
+		"check": "pnpm -r check",
+		"test": "pnpm -r test"
+	}
+}

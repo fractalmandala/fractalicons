@@ -1,0 +1,112 @@
+{
+	"name": "@fractaldesign/icons-animated",
+	"version": "0.1.0",
+	"description": "Animated icons for Svelte 5: over 4,000 icons from Phosphor, Remix, Flowbite, Heroicons and Ionicons, with 22 animation templates on the Web Animations API.",
+	"license": "MIT",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fractalmandala/fractalicons.git",
+		"directory": "packages/icons-animated"
+	},
+	"homepage": "https://github.com/fractalmandala/fractalicons#readme",
+	"bugs": {
+		"url": "https://github.com/fractalmandala/fractalicons/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"svelte",
+		"svelte5",
+		"icons",
+		"animated",
+		"animation",
+		"web-animations",
+		"phosphor",
+		"remix",
+		"flowbite",
+		"heroicons",
+		"ionicons",
+		"svg"
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*",
+		"NOTICE.md"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"generate": "node scripts/generate.mjs",
+		"sources": "node ../../scripts/fetch-sources.mjs icons-animated",
+		"notice": "node ../../scripts/notice.mjs icons-animated",
+		"build": "npm run generate && npm run prepack",
+		"prepack": "npm run notice && svelte-kit sync && svelte-package && publint",
+		"check": "npm run generate && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"test": "node --test scripts/transform.test.mjs"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./phosphor": {
+			"types": "./dist/phosphor/index.d.ts",
+			"svelte": "./dist/phosphor/index.js",
+			"default": "./dist/phosphor/index.js"
+		},
+		"./remix": {
+			"types": "./dist/remix/index.d.ts",
+			"svelte": "./dist/remix/index.js",
+			"default": "./dist/remix/index.js"
+		},
+		"./flowbite": {
+			"types": "./dist/flowbite/index.d.ts",
+			"svelte": "./dist/flowbite/index.js",
+			"default": "./dist/flowbite/index.js"
+		},
+		"./hero": {
+			"types": "./dist/hero/index.d.ts",
+			"svelte": "./dist/hero/index.js",
+			"default": "./dist/hero/index.js"
+		},
+		"./ion": {
+			"types": "./dist/ion/index.d.ts",
+			"svelte": "./dist/ion/index.js",
+			"default": "./dist/ion/index.js"
+		}
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@sveltejs/kit": "^2.63.0",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^22",
+		"eslint": "^10.4.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"publint": "^0.3.21",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.0.16"
+	}
+}
