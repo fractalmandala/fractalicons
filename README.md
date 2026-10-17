@@ -1,6 +1,7 @@
 # fractalicons
 
 Icon packages for Svelte 5, in one repo.
+https://github.com/fractalmandala/fractalicons
 
 | Package | What it is |
 |---|---|
