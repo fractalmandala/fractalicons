@@ -3,6 +3,9 @@
 Icon packages for Svelte 5, in one repo.
 https://github.com/fractalmandala/fractalicons
 
+https://www.npmjs.com/package/@fractaldesign/icons
+https://www.npmjs.com/package/@fractaldesign/icons-animated
+
 | Package | What it is |
 |---|---|
 | [`@fractaldesign/icons`](packages/icons) | Static icons: 34 families, over 35,000 icons, tree-shakeable, short-prefix imports |
