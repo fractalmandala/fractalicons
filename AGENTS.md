@@ -1,22 +1,30 @@
 # AGENTS
 
-Guidance for AI coding agents working in this project.
+The top of the README in every project must have:
 
-## Start here
-- Read `README.md` for project purpose and run/build commands.
-- Read `DESIGN.md` before making UI or visual changes.
-- Check for `TECHNICALS.md`, `TECH.md`, or `PRODUCT.md` if present.
+name - name of project
+description - 1 line description
+type - sveltekit/gpui/site/ext/other
+//when relevant:
+gitlink - 
+npmlink - 
+url - 
 
-## Working rules
-- Make the smallest change that solves the task.
-- Follow existing code patterns and project conventions.
-- Do not rewrite unrelated files.
-- Run the project's checks/tests before finishing when possible.
+1. Every project must have README.md, AGENTS.md (this file and its contents), and if relevant DESIGN.md; and if/when published on NPM/githun a LICENSE if relevant
+2. Readme must contain commands for run dev, run desktop, run build, build .dmg.
 
-## Commands
-- Dev: see `README.md`
-- Desktop: see `README.md`
-- Build: see `README.md`
+3. When beginning a new project:
+	- `pnpm add -D sass` && `pnpm add -D @fractaldesign/fractalstyler`
+	- `https://www.npmjs.com/package/@fractaldesign/fractalstyler` and `import '@fractaldesign/fractalstyler/css'` into root layout
+	- add an entry for this project in `/Users/amrit/ars-docs/alldocs/04canonicals/project-tracker.json`
+	- Use and follow DESIGN.md
+	
+4. Do not initiate git or push to github unless user instructs.
 
-## Notes
-- Project-specific constraints belong in this file as the project evolves.
+5. When developing, load and use poteto-mode - `/Users/amrit/ars-docs/alldocs/90skills/pstack/skills/poteto-mode`
+
+
+## Knowledge
+
+For GPUI, you have access to `/Users/amrit/ars-docs/alldocs/04canonicals/gpui-wiki`.
+You can use the skills at `/Users/amrit/ars-docs/alldocs/90skills`
