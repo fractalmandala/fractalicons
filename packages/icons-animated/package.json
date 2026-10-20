@@ -1,6 +1,6 @@
 {
 	"name": "@fractaldesign/icons-animated",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Animated icons for Svelte 5: over 4,000 icons from Phosphor, Remix, Flowbite, Heroicons and Ionicons, with 22 animation templates on the Web Animations API.",
 	"license": "MIT",
 	"type": "module",

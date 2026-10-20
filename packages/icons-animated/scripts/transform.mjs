@@ -142,7 +142,7 @@ export function extractViewBox(raw) {
 }
 
 
-/** The Svelte component written for one icon: every variant's SVG body, and the default variant. */
+/** The Svelte component written for one icon: every variant's SVG body, the default variant, typed props, and the engine's methods. */
 export function renderComponent(variantSvgs, viewBox, defaultVariant) {
 	const variantsEntries = Object.entries(variantSvgs).map(([k, v]) => `\t\t${k}: \`${v}\``);
 	const variantsObj = `{\n${variantsEntries.join(',\n')}\n\t}`;
@@ -151,18 +151,27 @@ export function renderComponent(variantSvgs, viewBox, defaultVariant) {
 
 	return `<script lang="ts">
 \timport AnimatedIcon from '../../core/AnimatedIcon.svelte';
+\timport type { Props as AnimatedIconProps } from '../../core/AnimatedIcon.svelte';
 
-\tconst VARIANTS: Record<string, string> = ${variantsObj};
+\tconst VARIANTS = ${variantsObj} as const;
 
-\tinterface Props {
-\t\tvariant?: string;
-\t\t[key: string]: unknown;
-\t}
+\ttype Variant = keyof typeof VARIANTS;
+\ttype Props = Omit<AnimatedIconProps, 'svg' | 'icon' | 'viewBox'> & { variant?: Variant };
 
 \tlet { variant = '${defaultV}', ...rest }: Props = $props();
+
+\tlet engine: { startAnimation(): void; stopAnimation(): void } | undefined;
+
+\texport function startAnimation(): void {
+\t\tengine?.startAnimation();
+\t}
+
+\texport function stopAnimation(): void {
+\t\tengine?.stopAnimation();
+\t}
 </script>
 
-<AnimatedIcon svg={VARIANTS[variant] ?? VARIANTS['${defaultV}']} viewBox="${viewBox}" {...rest} />
+<AnimatedIcon bind:this={engine} svg={VARIANTS[variant] ?? VARIANTS['${defaultV}']} viewBox="${viewBox}" {...rest} />
 `;
 }
 

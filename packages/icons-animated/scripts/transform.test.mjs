@@ -45,6 +45,16 @@ test('a component carries every variant and defaults to the set default when pre
 	assert.ok(renderComponent({ solid: '<g/>' }, '0 0 24 24', 'outline').includes("variant = 'solid'"), 'falls back to the variant it has');
 });
 
+test('a generated component types its variant from its artwork and re-exports the engine methods', () => {
+	const c = renderComponent({ outline: '<g/>', solid: '<g/>' }, '0 0 24 24', 'outline');
+
+	assert.ok(c.includes("type Variant = keyof typeof VARIANTS;"));
+	assert.ok(c.includes("Omit<AnimatedIconProps, 'svg' | 'icon' | 'viewBox'> & { variant?: Variant }"));
+	assert.ok(c.includes('export function startAnimation'));
+	assert.ok(c.includes('export function stopAnimation'));
+	assert.ok(c.includes('bind:this={engine}'));
+});
+
 test('only an invisible bounding rect is removed: a stroked rect with fill none is a real shape', () => {
 	const bounding = '<rect width="256" height="256" fill="none"/>';
 	const outline = '<rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-width="16"/>';
